@@ -1,0 +1,60 @@
+<p-button
+    icon="pi pi-plus"
+    label="Добавить щенка"
+    (onClick)="showAddPuppyDialog()"
+    styleClass="mb-4">
+</p-button>
+<div class="grid">
+    <div class="col-12 lg:col-6 xl:col-3" *ngFor="let puppy of puppies">
+        <div class="card cursor-pointer mb-0" (click)="showPuppyDetails(puppy)">
+            <div class="flex justify-content-between mb-3">
+                <div>
+                    <span class="block text-500 font-medium mb-3">{{ puppy.name }}</span>
+                </div>
+                <div class="flex align-items-center justify-content-center bg-blue-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+                    <i class="pi pi-mars text-blue-500 text-xl">{{ puppy.gender }}</i>
+                </div>
+            </div>
+            <span class="text-blue-500 font-medium">{{ puppy.ribbon }}</span>
+        </div>
+    </div>
+<!--    <div class="col-12 lg:col-6 xl:col-3">-->
+<!--        <div class="card mb-0">-->
+<!--            <div class="flex justify-content-between mb-3">-->
+<!--                <div>-->
+<!--                    <span class="block text-500 font-medium mb-3">СТАРЛИТ ШАРМ ЕВЛАМПИЯ</span>-->
+<!--                </div>-->
+<!--                <div class="flex align-items-center justify-content-center bg-orange-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">-->
+<!--                    <i class="pi pi-venus text-orange-500 text-xl">♀</i>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <span class="text-purple-500 font-medium">фиолетовая лента</span>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="col-12 lg:col-6 xl:col-3">-->
+<!--        <div class="card mb-0">-->
+<!--            <div class="flex justify-content-between mb-3">-->
+<!--                <div>-->
+<!--                    <span class="block text-500 font-medium mb-3">СТАРЛИТ ШАРМ ЕФРОСИНИЯ</span>-->
+<!--                </div>-->
+<!--                <div class="flex align-items-center justify-content-center bg-blue-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">-->
+<!--                    <i class="pi pi-venus text-blue-500 text-xl">♀</i>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <span class="text-pink-500 font-medium">розовая лента</span>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="col-12 lg:col-6 xl:col-3">-->
+<!--        <div class="card mb-0">-->
+<!--            <div class="flex justify-content-between mb-3">-->
+<!--                <div>-->
+<!--                    <span class="block text-500 font-medium mb-3">СТАРЛИТ ШАРМ ЕЛИСЕЙ</span>-->
+<!--                </div>-->
+<!--                <div class="flex align-items-center justify-content-center bg-orange-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">-->
+<!--                    <i class="pi pi-mars text-orange-500 text-xl">♂</i>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <span class="text-black-500 font-medium">чёрная лента</span>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>

@@ -1,0 +1,77 @@
+<form [formGroup]="puppyForm" class="grid p-fluid">
+    <div class="col-12">
+        <div class="field">
+            <label for="name">Кличка</label>
+            <input id="name" type="text" pInputText formControlName="name">
+        </div>
+    </div>
+
+    <div class="col-12 md:col-6">
+        <div class="field">
+            <label for="gender">Пол</label>
+            <p-dropdown
+                id="gender"
+                [options]="genderOptions"
+                formControlName="gender"
+                placeholder="Выберите пол"
+                optionLabel="label"
+                optionValue="value">
+            </p-dropdown>
+        </div>
+    </div>
+
+    <div class="col-12 md:col-6">
+        <div class="field">
+            <label for="ribbon">Цвет ленты</label>
+            <p-dropdown
+                id="ribbon"
+                [options]="ribbonOptions"
+                formControlName="ribbon"
+                placeholder="Выберите цвет ленты"
+                optionLabel="label"
+                optionValue="value">
+            </p-dropdown>
+        </div>
+    </div>
+
+    <div class="col-12 md:col-6">
+        <div class="field">
+            <label for="birthDate">Дата рождения</label>
+            <p-calendar
+                id="birthDate"
+                formControlName="birthDate"
+                [showIcon]="true">
+            </p-calendar>
+        </div>
+    </div>
+
+    <div class="col-12 md:col-6">
+        <div class="field">
+            <label for="weight">Вес при рождении (г)</label>
+            <input
+                id="weight"
+                type="number"
+                pInputText
+                formControlName="weight">
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="flex justify-content-end">
+            <button
+                pButton
+                label="Отмена"
+                icon="pi pi-times"
+                class="p-button-text mr-2"
+                (click)="close()">
+            </button>
+            <button
+                pButton
+                label="Сохранить"
+                icon="pi pi-check"
+                (click)="save()"
+                [disabled]="!puppyForm.valid">
+            </button>
+        </div>
+    </div>
+</form>

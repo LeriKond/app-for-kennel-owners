@@ -1,0 +1,32 @@
+<form [formGroup]="litterForm" class="grid p-fluid">
+    <div class="col-12 md:col-6">
+        <div class="field">
+            <label for="litterCode">Код помета</label>
+            <input id="litterCode" type="text" pInputText formControlName="litterCode">
+        </div>
+    </div>
+    <div class="col-12 md:col-6">
+        <div class="field">
+            <label for="birthDate">Дата рождения</label>
+            <p-calendar id="birthDate" formControlName="birthDate" [showIcon]="true"></p-calendar>
+        </div>
+    </div>
+    <div class="col-12 md:col-6">
+        <div class="field">
+            <label for="father">Отец</label>
+            <p-dropdown id="father" [options]="males" formControlName="father" optionLabel="name"></p-dropdown>
+        </div>
+    </div>
+    <div class="col-12 md:col-6">
+        <div class="field">
+            <label for="mother">Мать</label>
+            <p-dropdown id="mother" [options]="females" formControlName="mother" optionLabel="name"></p-dropdown>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="flex justify-content-end">
+            <button pButton label="Отмена" icon="pi pi-times" class="p-button-text mr-2" (click)="close()"></button>
+            <button pButton label="Сохранить" icon="pi pi-check" (click)="save()" [disabled]="!litterForm.valid"></button>
+        </div>
+    </div>
+</form>

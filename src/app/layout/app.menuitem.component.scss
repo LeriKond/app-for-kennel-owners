@@ -1,0 +1,11 @@
+.layout-menuitem-root-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.layout-menuitem-root-text .p-button.p-button-sm {
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+}
