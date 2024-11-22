@@ -59,25 +59,12 @@ export class AppMenuComponent implements OnInit {
                 label: 'Prime Blocks',
                 items: [
                     { label: 'Free Blocks', icon: 'pi pi-fw pi-eye', routerLink: ['/blocks'], badge: 'NEW' },
-                    // { label: 'All Blocks', icon: 'pi pi-fw pi-globe', url: ['https://www.primefaces.org/primeblocks-ng'], target: '_blank' },
                 ]
             },
-            // {
-            //     label: 'Utilities',
-            //     items: [
-            //         { label: 'PrimeIcons', icon: 'pi pi-fw pi-prime', routerLink: ['/utilities/icons'] },
-            //         { label: 'PrimeFlex', icon: 'pi pi-fw pi-desktop', url: ['https://www.primefaces.org/primeflex/'], target: '_blank' },
-            //     ]
-            // },
             {
                 label: 'Pages',
                 icon: 'pi pi-fw pi-briefcase',
                 items: [
-                    // {
-                    //     label: 'Landing',
-                    //     icon: 'pi pi-fw pi-globe',
-                    //     routerLink: ['/landing']
-                    // },
                     {
                         label: 'Auth',
                         icon: 'pi pi-fw pi-user',
@@ -109,16 +96,6 @@ export class AppMenuComponent implements OnInit {
                         icon: 'pi pi-fw pi-calendar',
                         routerLink: ['/pages/timeline']
                     },
-                    // {
-                    //     label: 'Not Found',
-                    //     icon: 'pi pi-fw pi-exclamation-circle',
-                    //     routerLink: ['/notfound']
-                    // },
-                    // {
-                    //     label: 'Empty',
-                    //     icon: 'pi pi-fw pi-circle-off',
-                    //     routerLink: ['/pages/empty']
-                    // },
                 ]
             },
             {
