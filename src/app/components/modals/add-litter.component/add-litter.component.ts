@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import {CalendarModule} from "primeng/calendar";
 import {DropdownModule} from "primeng/dropdown";
+import {InputTextModule} from "primeng/inputtext";
 
 
 @Component({
@@ -11,7 +12,8 @@ import {DropdownModule} from "primeng/dropdown";
     imports: [
         ReactiveFormsModule,
         CalendarModule,
-        DropdownModule
+        DropdownModule,
+        InputTextModule
     ],
   templateUrl: './add-litter.component.html',
   styleUrls: ['./add-litter.component.scss']

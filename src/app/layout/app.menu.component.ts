@@ -28,10 +28,10 @@ export class AppMenuComponent implements OnInit {
                 addButtonAction: () => this.showAddLitterDialog(),
                 items: [
                     { label: 'Помет "Е"', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/litterE'] },
-                    { label: 'Помет "Ф"', icon: 'pi pi-fw pi-id-card', routerLink: [''] },
-                    { label: 'Помет "Л"', icon: 'pi pi-fw pi-id-card', routerLink: [''] },
-                    { label: 'Помет "М"', icon: 'pi pi-fw pi-id-card', routerLink: [''] },
-                    { label: 'Помет "Д"', icon: 'pi pi-fw pi-id-card', routerLink: [''] },
+                    { label: 'Помет "Ф"', icon: 'pi pi-fw pi-id-card', routerLink: ['/'] },
+                    { label: 'Помет "Л"', icon: 'pi pi-fw pi-id-card', routerLink: ['/'] },
+                    { label: 'Помет "М"', icon: 'pi pi-fw pi-id-card', routerLink: ['/'] },
+                    { label: 'Помет "Д"', icon: 'pi pi-fw pi-id-card', routerLink: ['/'] },
                 ]
             },
             // {

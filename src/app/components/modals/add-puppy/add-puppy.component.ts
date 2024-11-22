@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import {CalendarModule} from "primeng/calendar";
 import {DropdownModule} from "primeng/dropdown";
+import {InputTextModule} from "primeng/inputtext";
 
 export interface Puppy {
     name: string;
@@ -16,7 +17,8 @@ export interface Puppy {
     imports: [
         ReactiveFormsModule,
         CalendarModule,
-        DropdownModule
+        DropdownModule,
+        InputTextModule
     ],
   templateUrl: './add-puppy.component.html',
   styleUrls: ['./add-puppy.component.scss']
