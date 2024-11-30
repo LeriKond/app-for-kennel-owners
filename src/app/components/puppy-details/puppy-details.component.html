@@ -1,12 +1,61 @@
 <div class="card">
     <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
 
-    <div class="mt-4" *ngIf="puppy">
+    <div class="mt-4">
+        <div class="pedigree-chart mb-4">
+            <p-organizationChart
+                [value]="pedigreeData"
+                styleClass="company"
+                [preserveSpace]="false">
+                <ng-template let-node pTemplate="default">
+                    <div class="node-content p-2" [class]="node.styleClass">
+                        <div class="font-bold mb-2">{{node.label}}</div>
+                        <div *ngIf="node.data?.achievements" class="text-sm">
+                            <div *ngIf="node.data.achievements.tests?.length" class="mb-1">
+                                <div class="font-medium">Тесты:</div>
+                                <div *ngFor="let test of node.data.achievements.tests" class="pl-2">
+                                    - {{test}}
+                                </div>
+                            </div>
+                            <div *ngIf="node.data.achievements.shows?.length">
+                                <div class="font-medium">Выставки:</div>
+                                <div *ngFor="let show of node.data.achievements.shows" class="pl-2">
+                                    - {{show}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-organizationChart>
+        </div>
         <div class="flex flex-column align-items-center">
             <h2>{{puppy.name}}</h2>
-            <p>Пол: {{puppy.gender === '♂' ? 'Кобель' : 'Сука'}}</p>
-            <p>Лента: {{puppy.ribbon}}</p>
-            <!-- Дополнительные поля щенка -->
+            <p-card styleClass="w-full md:w-20rem mt-3">
+                <div class="grid">
+                    <div class="col-5 font-bold">Пол:</div>
+                    <div class="col-7">{{puppy.gender === 'male' ? 'Кобель' : 'Сука'}} {{puppy.gender}}</div>
+
+                    <div class="col-5 font-bold">Окрас:</div>
+                    <div class="col-7">{{puppy.color}}</div>
+
+                    <div class="col-5 font-bold">Лента:</div>
+                    <div class="col-7">{{puppy.ribbon.name}}</div>
+
+                    <div class="col-5 font-bold">Клеймо:</div>
+                    <div class="col-7">{{puppy.stamp}}</div>
+                </div>
+            </p-card>
+        </div>
+        <div class="flex flex-column gap-1">
+        <p-fieldset legend="Динамика роста" [toggleable]="true" class="mt-4">
+            <app-height-chart [chartData]="growthData"></app-height-chart>
+        </p-fieldset>
+        <p-fieldset legend="Динамика веса" [toggleable]="true" class="mt-4">
+            <app-puppy-weight-table [weights]=""></app-puppy-weight-table>
+        </p-fieldset>
+        <p-fieldset legend="Данные о вакцинациях" [toggleable]="true" class="mt-4">
+            <app-puppy-vaccination-table [vaccinations]=""></app-puppy-vaccination-table>
+        </p-fieldset>
         </div>
     </div>
 </div>

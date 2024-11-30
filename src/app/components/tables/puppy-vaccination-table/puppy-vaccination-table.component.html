@@ -1,0 +1,19 @@
+<p-table [value]="vaccinations" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Дата</th>
+            <th>Наименование вакцины</th>
+            <th>Ветеринарная клиника</th>
+            <th>ФИО вет. врача</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-vaccination>
+        <tr>
+            <td>{{vaccination.date | date:'dd.MM.yyyy'}}</td>
+            <td>{{vaccination.vaccinationName}}</td>
+            <td>{{vaccination.clinicName}}</td>
+            <td>{{vaccination.veterinarian}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+

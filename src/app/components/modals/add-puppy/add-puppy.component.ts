@@ -4,13 +4,27 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import {CalendarModule} from "primeng/calendar";
 import {DropdownModule} from "primeng/dropdown";
 import {InputTextModule} from "primeng/inputtext";
+import {PedigreeNode} from "../../puppy-details/puppy-details.component";
+
+export interface Ribbon {
+    value: string;
+    name: string;
+}
 
 export interface Puppy {
     name: string;
+    color: string;
     gender: 'male' | 'female';
-    ribbon: string;
+    ribbon: Ribbon;
+    stamp: string;
+    pedigree?: {
+        father: PedigreeNode;
+        mother: PedigreeNode;
+    },
+    status?: PuppyStatus;
 }
 
+export type PuppyStatus = 'Продан' | 'Продается' | 'В питомнике';
 @Component({
   selector: 'app-add-litter',
   standalone: true,
