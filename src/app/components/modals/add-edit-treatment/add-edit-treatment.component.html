@@ -1,0 +1,52 @@
+<div class="grid">
+    <div class="col-12">
+        <span class="p-float-label">
+            <p-calendar
+                id="date"
+                [(ngModel)]="treatment.date"
+                dateFormat="dd.mm.yy"
+                [showIcon]="true"
+                [style]="{ width: '100%' }">
+            </p-calendar>
+            <label for="date">Дата</label>
+        </span>
+    </div>
+
+    <div class="col-12 mt-4">
+        <span class="p-float-label">
+            <input
+                id="quantity"
+                type="text"
+                pInputText
+                [(ngModel)]="treatment.quantity"
+                [style]="{ width: '100%' }">
+            <label for="quantity">Количество</label>
+        </span>
+    </div>
+
+    <div class="col-12 mt-4">
+        <span class="p-float-label">
+            <input
+                id="name"
+                type="text"
+                pInputText
+                [(ngModel)]="treatment.name"
+                [style]="{ width: '100%' }">
+            <label for="name">Название препарата</label>
+        </span>
+    </div>
+
+    <div class="col-12 flex justify-content-end gap-2 mt-4">
+        <p-button
+            label="Отмена"
+            icon="pi pi-times"
+            (onClick)="hideDialog()"
+            styleClass="p-button-text">
+        </p-button>
+        <p-button
+            label="Сохранить"
+            icon="pi pi-check"
+            (onClick)="saveTreatment()">
+        </p-button>
+    </div>
+</div>

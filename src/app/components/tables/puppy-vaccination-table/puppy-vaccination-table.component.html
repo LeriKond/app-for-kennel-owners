@@ -1,4 +1,9 @@
 <p-table [value]="vaccinations" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-end">
+            <p-button icon="pi pi-plus" (click)="openDialog()"/>
+        </div>
+    </ng-template>
     <ng-template pTemplate="header">
         <tr>
             <th>Дата</th>

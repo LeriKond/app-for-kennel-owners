@@ -1,12 +1,130 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import { ButtonModule } from "primeng/button";
+import { DatePipe } from "@angular/common";
+import { SharedModule } from "primeng/api";
+import { TableModule } from "primeng/table";
+import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { CalendarModule } from 'primeng/calendar';
+import { FormsModule } from '@angular/forms';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
+import {AddEditTreatmentComponent} from "../../modals/add-edit-treatment/add-edit-treatment.component";
+
+export interface Treatment {
+    id?: number;
+    date: Date;
+    quantity: string;
+    name: string;
+}
 
 @Component({
-  selector: 'app-puppy-treatment-table',
-  standalone: true,
-  imports: [],
-  templateUrl: './puppy-treatment-table.component.html',
-  styleUrl: './puppy-treatment-table.component.scss'
+    selector: 'app-puppy-treatment-table',
+    standalone: true,
+    imports: [
+        ButtonModule,
+        DatePipe,
+        SharedModule,
+        TableModule,
+        DialogModule,
+        InputTextModule,
+        CalendarModule,
+        FormsModule,
+        ConfirmDialogModule,
+        ToastModule
+    ],
+    providers: [ConfirmationService, MessageService],
+    templateUrl: './puppy-treatment-table.component.html',
+    styleUrl: './puppy-treatment-table.component.scss'
 })
-export class PuppyTreatmentTableComponent {
+export class PuppyTreatmentTableComponent implements OnInit, OnDestroy {
+    treatments: Treatment[] = [];
+    ref: DynamicDialogRef | undefined;
 
+    constructor(
+        private dialogService: DialogService,
+        private confirmationService: ConfirmationService,
+        private messageService: MessageService
+) {}
+
+    ngOnInit() {
+        this.treatments = [
+            { id: 1, date: new Date('2024-01-01'), quantity: '1 таб.',  name: 'Диронет'},
+            { id: 2, date: new Date('2024-05-10'), quantity: '1,5 таб.',  name: 'Мильпразол'},
+            { id: 3, date: new Date('2023-06-01'), quantity: '1 таб.',  name: 'Симпарика'},
+            { id: 4, date: new Date('2024-01-01'), quantity: '1 таб.',  name: 'Диронет'},
+        ];
+    }
+
+    ngOnDestroy() {
+        if (this.ref) {
+            this.ref.close();
+        }
+    }
+
+    public openNew() {
+        this.ref = this.dialogService.open(AddEditTreatmentComponent, {
+            header: 'Новая запись',
+            width: '30%',
+            contentStyle: { overflow: 'auto' },
+            baseZIndex: 10000,
+            maximizable: true
+        });
+
+        this.ref.onClose.subscribe((treatment: Treatment) => {
+            if (treatment) {
+                const newId = Math.max(...this.treatments.map(t => t.id ?? 0)) + 1;
+                treatment.id = newId;
+                this.treatments.push(treatment);
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Успешно',
+                    detail: 'Запись добавлена'
+                });
+            }
+        });
+    }
+
+    public editTreatment(treatment: Treatment) {
+        this.ref = this.dialogService.open(AddEditTreatmentComponent, {
+            header: 'Редактирование записи',
+            width: '50%',
+            contentStyle: { overflow: 'auto' },
+            baseZIndex: 10000,
+            maximizable: true,
+            data: {
+                treatment: treatment
+            }
+        });
+
+        this.ref.onClose.subscribe((updatedTreatment: Treatment) => {
+            if (updatedTreatment) {
+                const index = this.treatments.findIndex(t => t.id === updatedTreatment.id);
+                this.treatments[index] = updatedTreatment;
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Успешно',
+                    detail: 'Запись обновлена'
+                });
+            }
+        });
+    }
+
+    public deleteTreatment(treatment: Treatment) {
+        this.confirmationService.confirm({
+            message: 'Вы уверены, что хотите удалить запись об обработке?',
+            header: 'Подтверждение',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.treatments = this.treatments.filter(t => t.id !== treatment.id);
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Успешно',
+                    detail: 'Запись удалена'
+                });
+            }
+        });
+    }
 }

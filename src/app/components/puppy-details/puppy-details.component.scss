@@ -1,0 +1,14 @@
+:host ::ng-deep {
+    .p-card .p-element .mt-3 {
+        width: 100% !important;
+    }
+
+    .p-card-body {
+        width: 100% !important;
+    }
+
+    div[class*="p-card"] {
+        width: 100% !important;
+        border-radius: 1rem;
+    }
+}

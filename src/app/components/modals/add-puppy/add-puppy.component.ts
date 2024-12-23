@@ -9,6 +9,7 @@ import {PedigreeNode} from "../../puppy-details/puppy-details.component";
 export interface Ribbon {
     value: string;
     name: string;
+    color?: string;
 }
 
 export interface Puppy {
@@ -22,6 +23,9 @@ export interface Puppy {
         mother: PedigreeNode;
     },
     status?: PuppyStatus;
+    specialMarks?: string;
+    breed?: string;
+    birthDate?: string;
 }
 
 export type PuppyStatus = 'Продан' | 'Продается' | 'В питомнике';

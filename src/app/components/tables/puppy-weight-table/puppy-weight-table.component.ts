@@ -1,6 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {TableModule} from "primeng/table";
 import {DatePipe} from "@angular/common";
+import {ButtonModule} from "primeng/button";
+import {AddEditVaccinationComponent} from "../../modals/add-edit-vaccination/add-edit-vaccination.component";
+import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
+import {AddEditTreatmentComponent} from "../../modals/add-edit-treatment/add-edit-treatment.component";
 
 export interface PuppyWeight {
     date: Date;
@@ -11,13 +15,17 @@ export interface PuppyWeight {
   standalone: true,
     imports: [
         TableModule,
-        DatePipe
+        DatePipe,
+        ButtonModule
     ],
   templateUrl: './puppy-weight-table.component.html',
   styleUrl: './puppy-weight-table.component.scss'
 })
 export class PuppyWeightTableComponent implements OnInit {
     @Input() weights: PuppyWeight[] = [];
+    ref: DynamicDialogRef | undefined;
+
+    constructor(private dialogService: DialogService) {}
 
     ngOnInit() {
         // Пример данных
@@ -28,5 +36,16 @@ export class PuppyWeightTableComponent implements OnInit {
             { date: new Date('2024-01-22'), weight: 2.1 },
             { date: new Date('2024-01-29'), weight: 2.4 }
         ];
+    }
+
+    public openDialog() {
+        this.ref = this.dialogService.open(AddEditTreatmentComponent, {
+            header: 'Добавление записи весе',
+            width: '50%'
+        });
+
+        this.ref.onClose.subscribe((weight) => {
+            if (weight) {}
+        });
     }
 }

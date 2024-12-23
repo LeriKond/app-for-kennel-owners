@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import {AuthService} from "../../../service/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-login',
@@ -14,10 +16,22 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
     `]
 })
 export class LoginComponent {
-
     valCheck: string[] = ['remember'];
+    password: string = '';
+    email: string = '';
 
-    password!: string;
+    constructor(
+        public layoutService: LayoutService,
+        private authService: AuthService,
+        private router: Router
+    ) { }
 
-    constructor(public layoutService: LayoutService) { }
+    onLogin(): void {
+        console.log(11111)
+        // if (this.email && this.password) {
+        //     this.authService.login(this.email, this.password);
+        // }
+
+        this.router.navigate(['']);
+    }
 }

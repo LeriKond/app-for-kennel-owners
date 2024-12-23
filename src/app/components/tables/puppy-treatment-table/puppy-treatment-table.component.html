@@ -1,1 +1,33 @@
-<p>puppy-treatment-table works!</p>
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+
+<p-table [value]="treatments" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            <h3>Обработка от паразитов</h3>
+            <p-button icon="pi pi-plus" (onClick)="openNew()"></p-button>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Дата</th>
+            <th>Кол-во</th>
+            <th>Название препарата</th>
+            <th style="width: 7rem"></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-treatment>
+        <tr>
+            <td>{{treatment.date | date:'dd.MM.yyyy'}}</td>
+            <td>{{treatment.quantity}}</td>
+            <td>{{treatment.name}}</td>
+            <td>
+                <div class="flex gap-2">
+                    <p-button icon="pi pi-pencil" severity="success" [rounded]="true" [outlined]="true" (onClick)="editTreatment(treatment)"></p-button>
+                    <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true" (onClick)="deleteTreatment(treatment)"></p-button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+

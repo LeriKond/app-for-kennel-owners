@@ -1,0 +1,62 @@
+<form [formGroup]="vaccinationForm" class="grid p-fluid">
+    <div class="col-12">
+        <div class="field">
+            <label for="name">Наименование</label>
+            <input id="name" type="text" pInputText formControlName="name">
+        </div>
+    </div>
+
+    <div class="col-12 md:col-6">
+        <div class="field">
+            <label for="date">Дата вакцинации</label>
+            <p-calendar
+                id="date"
+                formControlName="date"
+                [showIcon]="true"
+                appendTo="body">
+            </p-calendar>
+        </div>
+    </div>
+
+    <div class="col-12 md:col-6">
+        <div class="field">
+            <label for="clinic">Наименование ветеринарной клинки</label>
+            <input
+                id="clinic"
+                type="text"
+                pInputText
+                formControlName="clinic">
+        </div>
+    </div>
+
+    <div class="col-12 md:col-6">
+        <div class="field">
+            <label for="vet">Ветеринарный врач</label>
+            <input
+                id="vet"
+                type="text"
+                pInputText
+                formControlName="vet">
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="flex justify-content-end">
+            <button
+                pButton
+                label="Отмена"
+                icon="pi pi-times"
+                class="p-button-text mr-2"
+                (click)="close()">
+            </button>
+            <button
+                pButton
+                label="Сохранить"
+                icon="pi pi-check"
+                (click)="save()"
+                [disabled]="!vaccinationForm.valid">
+            </button>
+        </div>
+    </div>
+</form>
+

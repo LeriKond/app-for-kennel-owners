@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
+import {AuthService} from "./demo/service/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-root',
@@ -7,9 +9,15 @@ import { PrimeNGConfig } from 'primeng/api';
 })
 export class AppComponent implements OnInit {
 
-    constructor(private primengConfig: PrimeNGConfig) { }
+    constructor(private primengConfig: PrimeNGConfig,  private authService: AuthService, private router: Router) { }
 
     ngOnInit() {
         this.primengConfig.ripple = true;
+
+        // if (!this.authService.currentUserValue) {
+        //     this.router.navigate(['/auth/login']);
+        // }
+
+        this.router.navigate(['/auth/login']);
     }
 }

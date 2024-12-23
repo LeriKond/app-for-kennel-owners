@@ -8,6 +8,8 @@ import {FieldsetModule} from "primeng/fieldset";
 import {HeightChartComponent} from "../charts/height-chart/height-chart.component";
 import {PuppyWeightTableComponent} from "../tables/puppy-weight-table/puppy-weight-table.component";
 import {PuppyVaccinationTableComponent} from "../tables/puppy-vaccination-table/puppy-vaccination-table.component";
+import {PuppyTreatmentTableComponent} from "../tables/puppy-treatment-table/puppy-treatment-table.component";
+import {DatePipe} from "@angular/common";
 interface DogAchievements {
     tests?: string[];
     shows?: string[];
@@ -31,7 +33,9 @@ export interface PedigreeNode {
         FieldsetModule,
         HeightChartComponent,
         PuppyWeightTableComponent,
-        PuppyVaccinationTableComponent
+        PuppyVaccinationTableComponent,
+        PuppyTreatmentTableComponent,
+        DatePipe
     ],
   templateUrl: './puppy-details.component.html',
   styleUrl: './puppy-details.component.scss'
@@ -89,7 +93,8 @@ export class PuppyDetailsComponent implements OnInit {
         this.puppy = {
             name: 'Старлит шарм Еремей',
             gender: 'male',
-            color: 'палевый',
+            color: 'Палевый',
+            breed: 'Лабрадор ретривер',
             ribbon: {
                 value: 'red',
                 name: 'Красная лента'

@@ -1,7 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {DatePipe} from "@angular/common";
-import {SharedModule} from "primeng/api";
-import {TableModule} from "primeng/table";
+import { Component, Input, OnInit } from '@angular/core';
+import { DatePipe } from "@angular/common";
+import { SharedModule } from "primeng/api";
+import { TableModule } from "primeng/table";
+import { ButtonModule } from "primeng/button";
+import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
+import { AddEditVaccinationComponent } from "../../modals/add-edit-vaccination/add-edit-vaccination.component";
 
 @Component({
   selector: 'app-puppy-vaccination-table',
@@ -9,14 +12,17 @@ import {TableModule} from "primeng/table";
     imports: [
         DatePipe,
         SharedModule,
-        TableModule
+        TableModule,
+        ButtonModule
     ],
   templateUrl: './puppy-vaccination-table.component.html',
   styleUrl: './puppy-vaccination-table.component.scss'
 })
 export class PuppyVaccinationTableComponent implements OnInit {
     @Input() vaccinations: any[] = [];
+    ref: DynamicDialogRef | undefined;
 
+    constructor(private dialogService: DialogService) {}
     ngOnInit() {
         // Пример данных
         this.vaccinations = [
@@ -26,4 +32,16 @@ export class PuppyVaccinationTableComponent implements OnInit {
             { date: new Date('2024-01-01'), vaccinationName: 'Нобивак DHPPi', clinicName: 'Dr. Vetson', veterinarian: 'Максимова А.Ю.' },
         ];
     }
+
+    public openDialog() {
+        this.ref = this.dialogService.open(AddEditVaccinationComponent, {
+            header: 'Добавление записи о вакцинации',
+            width: '50%'
+        });
+
+        this.ref.onClose.subscribe((vaccination) => {
+            if (vaccination) {}
+        });
+    }
+
 }
