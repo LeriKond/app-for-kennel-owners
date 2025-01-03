@@ -12,6 +12,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import {AddEditTreatmentComponent} from "../../modals/add-edit-treatment/add-edit-treatment.component";
+import {PuppyDetailsService} from "../../../services/puppy-details.service";
 
 export interface Treatment {
     id?: number;
@@ -40,22 +41,19 @@ export interface Treatment {
     styleUrl: './puppy-treatment-table.component.scss'
 })
 export class PuppyTreatmentTableComponent implements OnInit, OnDestroy {
-    treatments: Treatment[] = [];
+    treatments: Treatment[];
     ref: DynamicDialogRef | undefined;
 
     constructor(
         private dialogService: DialogService,
         private confirmationService: ConfirmationService,
-        private messageService: MessageService
+        private messageService: MessageService,
+        private treatmentService: PuppyDetailsService
+
 ) {}
 
     ngOnInit() {
-        this.treatments = [
-            { id: 1, date: new Date('2024-01-01'), quantity: '1 таб.',  name: 'Диронет'},
-            { id: 2, date: new Date('2024-05-10'), quantity: '1,5 таб.',  name: 'Мильпразол'},
-            { id: 3, date: new Date('2023-06-01'), quantity: '1 таб.',  name: 'Симпарика'},
-            { id: 4, date: new Date('2024-01-01'), quantity: '1 таб.',  name: 'Диронет'},
-        ];
+        this.treatmentService.getTreatmentData().then(data => this.treatments = data);
     }
 
     ngOnDestroy() {

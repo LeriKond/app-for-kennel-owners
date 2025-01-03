@@ -4,7 +4,7 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import {CalendarModule} from "primeng/calendar";
 import {DropdownModule} from "primeng/dropdown";
 import {InputTextModule} from "primeng/inputtext";
-import {PedigreeNode} from "../../puppy-details/puppy-details.component";
+import {PedigreeNode} from "../../../pages/puppy-details/puppy-details.component";
 
 export interface Ribbon {
     value: string;

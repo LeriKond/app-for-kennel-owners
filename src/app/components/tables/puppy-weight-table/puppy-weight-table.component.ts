@@ -5,6 +5,7 @@ import {ButtonModule} from "primeng/button";
 import {AddEditVaccinationComponent} from "../../modals/add-edit-vaccination/add-edit-vaccination.component";
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import {AddEditTreatmentComponent} from "../../modals/add-edit-treatment/add-edit-treatment.component";
+import {PuppyDetailsService} from "../../../services/puppy-details.service";
 
 export interface PuppyWeight {
     date: Date;
@@ -22,20 +23,13 @@ export interface PuppyWeight {
   styleUrl: './puppy-weight-table.component.scss'
 })
 export class PuppyWeightTableComponent implements OnInit {
-    @Input() weights: PuppyWeight[] = [];
+    @Input() weights: PuppyWeight[];
     ref: DynamicDialogRef | undefined;
 
-    constructor(private dialogService: DialogService) {}
+    constructor(private dialogService: DialogService, private weightService: PuppyDetailsService) {}
 
     ngOnInit() {
-        // Пример данных
-        this.weights = [
-            { date: new Date('2024-01-01'), weight: 1.2 },
-            { date: new Date('2024-01-08'), weight: 1.5 },
-            { date: new Date('2024-01-15'), weight: 1.8 },
-            { date: new Date('2024-01-22'), weight: 2.1 },
-            { date: new Date('2024-01-29'), weight: 2.4 }
-        ];
+        this.weightService.getWeightData().then(data => this.weights = data);
     }
 
     public openDialog() {

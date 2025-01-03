@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {BreadcrumbModule} from "primeng/breadcrumb";
 import {MenuItem, TreeNode} from "primeng/api";
-import {Puppy} from "../modals/add-puppy/add-puppy.component";
+import {Puppy} from "../../components/modals/add-puppy/add-puppy.component";
 import {CardModule} from "primeng/card";
 import {OrganizationChartModule} from "primeng/organizationchart";
 import {FieldsetModule} from "primeng/fieldset";
-import {HeightChartComponent} from "../charts/height-chart/height-chart.component";
-import {PuppyWeightTableComponent} from "../tables/puppy-weight-table/puppy-weight-table.component";
-import {PuppyVaccinationTableComponent} from "../tables/puppy-vaccination-table/puppy-vaccination-table.component";
-import {PuppyTreatmentTableComponent} from "../tables/puppy-treatment-table/puppy-treatment-table.component";
+import {HeightChartComponent} from "../../components/charts/height-chart/height-chart.component";
+import {PuppyWeightTableComponent} from "../../components/tables/puppy-weight-table/puppy-weight-table.component";
+import {PuppyVaccinationTableComponent} from "../../components/tables/puppy-vaccination-table/puppy-vaccination-table.component";
+import {PuppyTreatmentTableComponent} from "../../components/tables/puppy-treatment-table/puppy-treatment-table.component";
 import {DatePipe} from "@angular/common";
 interface DogAchievements {
     tests?: string[];

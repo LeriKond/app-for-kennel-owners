@@ -1,76 +1,25 @@
-import { Component } from '@angular/core';
-import {AddPuppyComponent, Puppy, PuppyStatus} from "../../../components/modals/add-puppy/add-puppy.component";
-import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
-import {Router, ActivatedRoute } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { AddPuppyComponent, Puppy, PuppyStatus } from "../../../components/modals/add-puppy/add-puppy.component";
+import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
+import { Router, ActivatedRoute } from "@angular/router";
+import { PuppiesService } from "../../../services/puppies.service";
 
 
 @Component({
     templateUrl: './littersdemo.component.html'
 })
-export class LittersdemoComponent {
-    puppies: Puppy[] = [
-        {
-            name: 'Старлит Шарм Аванти',
-            gender: 'female',
-            ribbon: {
-                value: 'red',
-                name: 'Красная лента'
-            },
-            stamp: 'КЧФХ-123456',
-            color: 'Черный с подпалым',
-            status: 'Продан'
-        },
-        {
-            name: 'Старлит Шарм Бриллиант',
-            gender: 'male',
-            ribbon: {
-                value: 'blue',
-                name: 'Голубая лента'
-            },
-            stamp: 'КЧФХ-789012',
-            color: 'Коричневый',
-            status: 'Продается'
-        },
-        {
-            name: 'Старлит Шарм Вектор',
-            gender: 'male',
-            ribbon: {
-                value: 'green',
-                name: 'Зеленая лента'
-            },
-            stamp: 'КЧФХ-345678',
-            color: 'Серый',
-            status: 'Продан'
-        },
-        {
-            name: 'Старлит Шарм Гордость',
-            gender: 'female',
-            ribbon: {
-                value: 'yellow',
-                name: 'Желтая лента'
-            },
-            stamp: 'КЧФХ-901234',
-            color: 'Белый с черными пятнами',
-            status: 'В питомнике'
-        },
-        {
-            name: 'Старлит Шарм Дарина',
-            gender: 'female',
-            ribbon: {
-                value: 'purple',
-                name: 'Фиолетовая лента'
-            },
-            stamp: 'КЧФХ-567890',
-            color: 'Коричневый с белым',
-            status: 'Продается'
-        }
-    ];
+export class LittersdemoComponent implements OnInit {
+    puppies: Puppy[];
     ref: DynamicDialogRef | undefined;
 
-    constructor(private dialogService: DialogService, private router: Router, private route: ActivatedRoute) {}
+    constructor(private dialogService: DialogService, private router: Router, private route: ActivatedRoute, private puppyService: PuppiesService) {}
 
 
-    showAddPuppyDialog() {
+    ngOnInit() {
+        this.puppyService.getPuppiesByLitter().then(data => this.puppies = data);
+    }
+
+    public showAddPuppyDialog() {
         this.ref = this.dialogService.open(AddPuppyComponent, {
             header: 'Добавление щенка',
             width: '50%'
@@ -84,14 +33,11 @@ export class LittersdemoComponent {
         });
     }
 
-    showPuppyDetails(puppy: Puppy) {
-        // Используем ID щенка в URL и передаем данные через state
-        this.router.navigate(['litters', 'puppy', puppy.name], {
-            state: { puppy }
-        });
+    public showPuppyDetails(puppy: Puppy) {
+        this.router.navigate(['/litters/puppy']);
     }
 
-    getChipStyleClass(status: PuppyStatus): string {
+    public getChipStyleClass(status: PuppyStatus): string {
         const statusClassMap: {[key in PuppyStatus]: string} = {
             'Продан': 'bg-red-100 text-red-700',
             'Продается': 'bg-green-100 text-green-700',

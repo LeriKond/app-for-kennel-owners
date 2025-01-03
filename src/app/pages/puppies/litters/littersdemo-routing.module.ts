@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes  } from '@angular/router';
 import { LittersdemoComponent } from './littersdemo.component';
-import {PuppyDetailsComponent} from "../../../components/puppy-details/puppy-details.component";
+import {PuppyDetailsComponent} from "../../puppy-details/puppy-details.component";
 
 const routes: Routes = [
-    { 
-        path: '', 
+    {
+        path: '',
         component: LittersdemoComponent
     },
-    { 
-        path: 'puppy', // Добавляем параметр name
+    {
+        path: 'puppy',
         component: PuppyDetailsComponent,
         data: { breadcrumb: 'Щенок' }
     }
