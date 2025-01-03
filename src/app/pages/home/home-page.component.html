@@ -1,0 +1,68 @@
+<p-card header="Добро пожаловать Старлит Шарм!" styleClass="greeting-banner">
+    <p>Исследуйте функции приложения Breeder's Best для эффективного ведения информации о питомнике</p>
+</p-card>
+<!-- Dashboard Container -->
+<div class="dashboard-container grid fluid">
+    <!-- Block 1: Number of Dogs and Puppies -->
+    <div class="col-12 md-6 lg-3">
+        <p-card styleClass="info-block mb-3">
+            <div class="info-content">
+                <h3>Общее кол-во собак в питомнике:</h3>
+                <p class="highlight">12</p>
+                <h4>Кобелей:</h4>
+                <p class="highlight">9</p>
+                <h4>Сук:</h4>
+                <p class="highlight">3</p>
+            </div>
+        </p-card>
+    </div>
+
+    <div class="col-12 md-6 lg-3">
+        <p-card styleClass="info-block mb-3">
+            <div class="info-content">
+                <h3>Общее количество щенков в питомнике:</h3>
+                <p class="highlight">15</p>
+            </div>
+        </p-card>
+    </div>
+
+    <!-- Block 2: Total Puppy Owners -->
+    <div class="col-12 md-6 lg-3">
+        <p-card styleClass="info-block mb-3">
+            <div class="info-content">
+                <h3>Количество владельцев щенков:</h3>
+                <p class="highlight">30</p>
+            </div>
+        </p-card>
+    </div>
+
+    <!-- Block 3: Upcoming Events -->
+    <div class="col-12 md-6 lg-3">
+        <p-card styleClass="info-block mb-3">
+            <div class="info-content">
+                <h3>Предстоящие события</h3>
+                <ul>
+                    <li>Vaccination Day - 10/15/2023</li>
+                    <li>Puppy Training - 10/20/2023</li>
+                </ul>
+            </div>
+        </p-card>
+    </div>
+
+    <!-- Block 4: Calendar -->
+    <div class="col-12 md-8 lg-8">
+        <p-card header="Календарь" styleClass="info-block mb-3">
+            <p-calendar [inline]="true" [showWeek]="true"></p-calendar>
+        </p-card>
+    </div>
+
+    <!-- Block 5: Reminders -->
+    <div class="col-12 md-4 lg-4">
+        <p-card header="Reminders" styleClass="info-block mb-3">
+            <ul>
+                <li>Schedule vet appointment for Max - 10/12/2023</li>
+                <li>Order more dog food - 10/18/2023</li>
+            </ul>
+        </p-card>
+    </div>
+</div>

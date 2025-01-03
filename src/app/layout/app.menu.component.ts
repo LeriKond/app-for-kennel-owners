@@ -19,7 +19,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Питомник',
                 items: [
-                    { label: 'Общая информация', icon: 'pi pi-fw pi-home', routerLink: ['/'] }
+                    { label: 'Общая информация', icon: 'pi pi-fw pi-home', routerLink: ['/home'] }
                 ]
             },
             {
@@ -27,11 +27,18 @@ export class AppMenuComponent implements OnInit {
                 showAddButton: true,
                 addButtonAction: () => this.showAddLitterDialog(),
                 items: [
-                    { label: 'Помет "Е"', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/litterE'] },
-                    { label: 'Помет "Ф"', icon: 'pi pi-fw pi-id-card', routerLink: ['/'] },
-                    { label: 'Помет "Л"', icon: 'pi pi-fw pi-id-card', routerLink: ['/'] },
-                    { label: 'Помет "М"', icon: 'pi pi-fw pi-id-card', routerLink: ['/'] },
-                    { label: 'Помет "Д"', icon: 'pi pi-fw pi-id-card', routerLink: ['/'] },
+                    { label: 'Помет "Е"', icon: 'pi pi-fw pi-id-card', routerLink: ['/litters'] },
+                    { label: 'Помет "Ф"', icon: 'pi pi-fw pi-id-card', routerLink: ['/litters'] },
+                    { label: 'Помет "Л"', icon: 'pi pi-fw pi-id-card', routerLink: ['/litters'] },
+                    { label: 'Помет "М"', icon: 'pi pi-fw pi-id-card', routerLink: ['/litters'] },
+                    { label: 'Помет "Д"', icon: 'pi pi-fw pi-id-card', routerLink: ['/litters'] },
+                ]
+            },
+            {
+                label: 'База знаний',
+                items: [
+                    { label: 'Основные документы', icon: 'pi pi-file-word', routerLink: ['documents'] },
+                    { label: 'Памятки', icon: 'pi pi-file', routerLink: ['memo'] },
                 ]
             },
             // {

@@ -1,31 +1,54 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppLayoutComponent } from "./layout/app.layout.component";
+import { AppLayoutComponent } from './layout/app.layout.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NoAuthGuard } from './guards/no-auth.guard';
 
 const routes: Routes = [
     {
         path: 'auth',
-        loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule),
-        // canActivate: [NoAuthGuard]
+        loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
+        // canActivate: [NoAuthGuard], // Защита от доступа для авторизованных пользователей
     },
     {
         path: '',
         component: AppLayoutComponent,
-        // canActivate: [AuthGuard],
+        // canActivate: [AuthGuard], // Защита только для авторизованных пользователей
         children: [
-            { path: '', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
-            { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },
-            { path: 'utilities', loadChildren: () => import('./demo/components/utilities/utilities.module').then(m => m.UtilitiesModule) },
-            { path: 'pages', loadChildren: () => import('./demo/components/pages/pages.module').then(m => m.PagesModule) }
-        ]
+            // Главная страница (например, дашборд)
+            {
+                path: '',
+                redirectTo: 'home',
+                pathMatch: 'full'
+            },
+            {
+                path: 'home',
+                loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule),
+            },
+            {
+                path: 'litters',
+                loadChildren: () => import('./pages/puppies/litters/littersdemo.module').then(m => m.LittersDemoModule),
+                data: { menuItem: 'litters' }
+            },
+            // Страница списка собак и деталей
+            // {
+            //     path: 'dogs',
+            //     loadChildren: () => import('./pages/dogs/dogs.module').then(m => m.DogsModule),
+            // },
+            // Страница профиля пользователя
+            // {
+            //     path: 'profile',
+            //     loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule),
+            // },
+        ],
     },
-    { path: '**', redirectTo: '' }
+
+    // Перенаправление на главную страницу для неизвестных маршрутов
+    { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled', useHash: true  })],
+    imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled', useHash: true })],
     exports: [RouterModule],
 })
 export class AppRoutingModule { }

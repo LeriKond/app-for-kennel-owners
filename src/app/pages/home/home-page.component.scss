@@ -1,0 +1,27 @@
+.greeting-banner {
+    background-color: #e9ecef;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+/* Info Blocks */
+.info-block {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Highlighted Numbers */
+.highlight {
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Lists */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
