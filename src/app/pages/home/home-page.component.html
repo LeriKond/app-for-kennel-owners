@@ -1,68 +1,80 @@
-<p-card header="Добро пожаловать Старлит Шарм!" styleClass="greeting-banner">
-    <p>Исследуйте функции приложения Breeder's Best для эффективного ведения информации о питомнике</p>
+<p-card header="Добро пожаловать, Старлит Шарм!" styleClass="greeting-banner mb-4">
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+        <span>Исследуйте функции приложения Breeder's Best для эффективного ведения информации о питомнике.</span>
+        <img src="assets/icons/pet-house-kennel.svg" alt="Icon" style="width: 150px; height: 150px; margin-left: 10px;" />
+    </div>
 </p-card>
-<!-- Dashboard Container -->
+
 <div class="dashboard-container grid fluid">
-    <!-- Block 1: Number of Dogs and Puppies -->
-    <div class="col-12 md-6 lg-3">
-        <p-card styleClass="info-block mb-3">
-            <div class="info-content">
-                <h3>Общее кол-во собак в питомнике:</h3>
-                <p class="highlight">12</p>
-                <h4>Кобелей:</h4>
-                <p class="highlight">9</p>
-                <h4>Сук:</h4>
-                <p class="highlight">3</p>
+    <!-- Row 1: Общая информация -->
+    <div class="col-6 lg-6">
+        <p-card header="Собаки в питомнике" styleClass="info-block mb-3 custom-card">
+            <div class="info-content flex align-items-center">
+                <div>
+                    <h3>Общее количество:</h3>
+                    <p class="highlight text-lg">12</p>
+                    <h4>Кобелей:</h4> <p class="highlight">9</p>
+                    <h4>Сук:</h4> <p class="highlight">3</p>
+                </div>
             </div>
         </p-card>
     </div>
 
-    <div class="col-12 md-6 lg-3">
-        <p-card styleClass="info-block mb-3">
-            <div class="info-content">
-                <h3>Общее количество щенков в питомнике:</h3>
-                <p class="highlight">15</p>
+    <div class="col-6 md-4">
+        <p-card header="Напоминания" styleClass="info-block mb-3">
+            <ul class="list-none p-0">
+                <li class="mb-2">
+                    <i class="pi pi-bell mr-2 text-yellow-500"></i> Записаться к ветеринару для Макса - <span class="highlight">10/12/2023</span>
+                </li>
+                <li>
+                    <i class="pi pi-bell mr-2 text-yellow-500"></i> Заказать больше корма для собак - <span class="highlight">10/18/2023</span>
+                </li>
+            </ul>
+        </p-card>
+    </div>
+
+    <div class="col-6 lg-6">
+        <p-card header="Щенки в питомнике" styleClass="info-block mb-3">
+            <div class="info-content flex align-items-center">
+                <div>
+                    <h3>Общее количество щенков:</h3>
+                    <p class="highlight text-lg">15</p>
+                </div>
             </div>
         </p-card>
     </div>
 
-    <!-- Block 2: Total Puppy Owners -->
-    <div class="col-12 md-6 lg-3">
-        <p-card styleClass="info-block mb-3">
-            <div class="info-content">
-                <h3>Количество владельцев щенков:</h3>
-                <p class="highlight">30</p>
+    <!-- Row 2: Владельцы щенков и события -->
+    <div class="col-6 md-6 lg-4">
+        <p-card header="Владельцы щенков" styleClass="info-block mb-3">
+            <div class="info-content flex align-items-center">
+                <div>
+                    <h3>Количество владельцев:</h3>
+                    <p class="highlight text-lg">30</p>
+                </div>
             </div>
         </p-card>
     </div>
 
-    <!-- Block 3: Upcoming Events -->
-    <div class="col-12 md-6 lg-3">
-        <p-card styleClass="info-block mb-3">
-            <div class="info-content">
-                <h3>Предстоящие события</h3>
-                <ul>
-                    <li>Vaccination Day - 10/15/2023</li>
-                    <li>Puppy Training - 10/20/2023</li>
-                </ul>
-            </div>
+    <div class="col-4 md-6 lg-8">
+        <p-card header="Предстоящие события" styleClass="info-block mb-3">
+            <ul class="list-none p-0">
+                <li class="mb-2">
+                    <i class="pi pi-calendar mr-2 text-blue-500"></i> День вакцинации - <span class="highlight">10/15/2023</span>
+                </li>
+                <li>
+                    <i class="pi pi-calendar mr-2 text-blue-500"></i> Запись на выставку - <span class="highlight">10/20/2023</span>
+                </li>
+            </ul>
         </p-card>
     </div>
 
-    <!-- Block 4: Calendar -->
-    <div class="col-12 md-8 lg-8">
+    <!-- Row 3: Календарь и напоминания -->
+    <div class="col-8 md-8">
         <p-card header="Календарь" styleClass="info-block mb-3">
             <p-calendar [inline]="true" [showWeek]="true"></p-calendar>
         </p-card>
     </div>
 
-    <!-- Block 5: Reminders -->
-    <div class="col-12 md-4 lg-4">
-        <p-card header="Reminders" styleClass="info-block mb-3">
-            <ul>
-                <li>Schedule vet appointment for Max - 10/12/2023</li>
-                <li>Order more dog food - 10/18/2023</li>
-            </ul>
-        </p-card>
-    </div>
+
 </div>

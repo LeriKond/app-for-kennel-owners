@@ -3,6 +3,7 @@ import { AddPuppyComponent, Puppy, PuppyStatus } from "../../../components/modal
 import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Router, ActivatedRoute } from "@angular/router";
 import { PuppiesService } from "../../../services/puppies.service";
+import { MenuItem } from "primeng/api";
 
 
 @Component({
@@ -11,6 +12,23 @@ import { PuppiesService } from "../../../services/puppies.service";
 export class LittersdemoComponent implements OnInit {
     puppies: Puppy[];
     ref: DynamicDialogRef | undefined;
+    puppyMenu: MenuItem[] = [
+        {
+            label: 'Изменить',
+            icon: 'pi pi-pencil',
+            command: () => this.editPuppy()
+        },
+        {
+            label: 'Удалить',
+            icon: 'pi pi-trash',
+            command: () => this.deletePuppy()
+        },
+        {
+            label: 'Изменить статус',
+            icon: 'pi pi-refresh',
+            command: () => this.changePuppyStatus()
+        }
+    ];
 
     constructor(private dialogService: DialogService, private router: Router, private route: ActivatedRoute, private puppyService: PuppiesService) {}
 
@@ -33,7 +51,7 @@ export class LittersdemoComponent implements OnInit {
         });
     }
 
-    public showPuppyDetails(puppy: Puppy) {
+    public showPuppyDetails(puppy: Puppy, event?: Event) {
         this.router.navigate(['/litters/puppy']);
     }
 
@@ -47,4 +65,20 @@ export class LittersdemoComponent implements OnInit {
         return statusClassMap[status];
     }
 
+    private editPuppy(){
+
+    }
+
+    private deletePuppy(){
+
+    }
+
+    private changePuppyStatus(){
+
+    }
+
+    public toggleMenu(menu: any, event: Event): void {
+        event.stopPropagation(); // Останавливаем всплытие события
+        menu.toggle(event);      // Открываем/закрываем меню
+    }
 }

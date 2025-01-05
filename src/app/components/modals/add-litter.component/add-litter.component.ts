@@ -19,9 +19,8 @@ import {InputTextModule} from "primeng/inputtext";
   styleUrls: ['./add-litter.component.scss']
 })
 export class AddLitterComponent {
+    letter: string = '';
     litterForm: FormGroup;
-    males: any[] = []; // Populate with male dogs
-    females: any[] = []; // Populate with female dogs
 
     constructor(
         private fb: FormBuilder,
@@ -40,8 +39,9 @@ export class AddLitterComponent {
         this.ref.close();
     }
 
-    save() {
-        this.ref.close();
+    save(event: Event) {
+        event.preventDefault();
+            this.ref.close({ letter: this.letter });
         // if (this.litterForm.valid) {
         //     const newLitter: Litter = this.litterForm.value;
         //     this.litterService.createLitter(newLitter)
@@ -55,5 +55,12 @@ export class AddLitterComponent {
         //             }
         //         );
         // }
+    }
+
+    onSubmit(event: Event) {
+        event.preventDefault();
+        if (this.letter) {
+            this.ref.close({ letter: this.letter });
+        }
     }
 }

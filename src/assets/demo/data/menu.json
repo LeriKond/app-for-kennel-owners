@@ -1,0 +1,50 @@
+[
+    {
+        "label": "Питомник",
+        "items": [
+            {
+                "label": "Общая информация",
+                "icon": "pi pi-fw pi-home",
+                "routerLink": ["/home"]
+            },
+            {
+                "label": "Собаки питомника",
+                "icon": "pi pi-fw pi-home",
+                "routerLink": ["/dogs"]
+            }
+        ]
+    },
+    {
+        "label": "Пометы",
+        "showAddButton": true,
+        "items": [
+            {
+                "label": "Помет \"Е\"",
+                "icon": "pi pi-fw pi-id-card",
+                "routerLink": ["/litters"],
+                "alias": "Е"
+            },
+            {
+                "label": "Помет \"Г\"",
+                "icon": "pi pi-fw pi-id-card",
+                "routerLink": ["/litters"],
+                "alias": "Г"
+            }
+        ]
+    },
+    {
+        "label": "База знаний",
+        "items": [
+            {
+                "label": "Основные документы",
+                "icon": "pi pi-file-word",
+                "routerLink": ["documents"]
+            },
+            {
+                "label": "Памятки",
+                "icon": "pi pi-file",
+                "routerLink": ["memo"]
+            }
+        ]
+    }
+]

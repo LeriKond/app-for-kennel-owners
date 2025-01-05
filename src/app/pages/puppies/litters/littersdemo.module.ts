@@ -14,6 +14,7 @@ import { MultiSelectModule } from "primeng/multiselect";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { InputTextModule } from "primeng/inputtext";
 import {ChipModule} from "primeng/chip";
+import {MenuModule} from "primeng/menu";
 
 @NgModule({
     imports: [
@@ -30,7 +31,8 @@ import {ChipModule} from "primeng/chip";
         MultiSelectModule,
         InputTextareaModule,
         InputTextModule,
-        ChipModule
+        ChipModule,
+        MenuModule
     ],
 	declarations: [LittersdemoComponent]
 })

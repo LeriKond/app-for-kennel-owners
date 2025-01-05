@@ -10,17 +10,40 @@
             <p-chip
                 [label]="puppy.status"
                 [styleClass]="getChipStyleClass(puppy.status)"
-                class="absolute top-0 m-2 z-10">
+                class="absolute top-0 mt-3 z-10">
             </p-chip>
             <div class="flex justify-content-between mb-3 pt-6">
                 <div>
                     <h5 class="block text-500 font-medium mb-3">{{ puppy.name }}</h5>
                 </div>
-                <div class="flex align-items-center justify-content-center bg-blue-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
-                    <i class="pi pi-mars text-blue-500 text-xl">{{ puppy.gender }}</i>
+                <div
+                    class="flex align-items-center justify-content-center border-round"
+                    [ngStyle]="{
+                    'width': '2.5rem',
+                    'height': '2.5rem',
+                    'background-color': puppy.gender === 'male' ? '#cce4ff' : '#fff4cc'
+                    }">
+<!--                    <i class="text-blue-500 text-xl"-->
+<!--                       [ngClass]="puppy.gender === 'male' ? 'pi-mars' : 'pi-venus'">-->
+<!--                    </i>-->
+                    <img
+                        [src]="'assets/icons/' + (puppy.gender === 'male' ? 'mars.svg' : 'venus.svg')"
+                        [alt]="puppy.gender === 'male' ? 'Mars Icon' : 'Venus Icon'"
+                        width="20"
+                        height="20">
                 </div>
             </div>
             <span [ngClass]="'text-' + puppy.ribbon.value.toLowerCase() + '-500'" class="font-medium">{{ puppy.ribbon.name }}</span>
+            <div class="absolute top-0 right-0 mt-2 mr-2">
+                <p-menu #menu [popup]="true" [model]="puppyMenu" appendTo="body"></p-menu>
+                <button
+                    type="button"
+                    pButton
+                    icon="pi pi-ellipsis-v"
+                    class="p-button-rounded p-button-text"
+                    (click)="toggleMenu(menu, $event)">
+                </button>
+            </div>
         </div>
     </div>
 </div>

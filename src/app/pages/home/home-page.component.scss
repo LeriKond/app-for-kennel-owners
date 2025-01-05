@@ -25,3 +25,20 @@ ul {
     list-style-type: none;
     padding: 0;
 }
+
+::ng-deep .custom-card .p-card-body {
+    //background: linear-gradient(145deg, #cac7fe, #8881f8, white);
+    background: linear-gradient(0deg, rgba(202,199,254,1) 0%, rgba(255,255,255,1) 100%);;
+    border-radius: 6px;
+    padding: 1.5rem;
+    overflow: hidden;
+}
+
+::ng-deep .custom-card .corner-icon {
+    position: absolute;
+    top: -20px; /* Расположим иконку в верхнем углу */
+    right: -20px; /* Иконка будет немного выходить за правый верхний угол */
+    width: 100px; /* Устанавливаем размер иконки */
+    height: 100px; /* Устанавливаем размер иконки */
+    z-index: 1; /* Убедитесь, что иконка будет поверх остальных элементов */
+}
