@@ -3,7 +3,7 @@
         "label": "Питомник",
         "items": [
             {
-                "label": "Общая информация",
+                "label": "Домашняя страница",
                 "icon": "pi pi-fw pi-home",
                 "routerLink": ["/home"]
             },
@@ -19,16 +19,16 @@
         "showAddButton": true,
         "items": [
             {
-                "label": "Помет \"Е\"",
-                "icon": "pi pi-fw pi-id-card",
-                "routerLink": ["/litters"],
-                "alias": "Е"
-            },
-            {
                 "label": "Помет \"Г\"",
                 "icon": "pi pi-fw pi-id-card",
                 "routerLink": ["/litters"],
                 "alias": "Г"
+            },
+            {
+                "label": "Помет \"Ф\"",
+                "icon": "pi pi-fw pi-id-card",
+                "routerLink": ["/litters"],
+                "alias": "Ф"
             }
         ]
     },

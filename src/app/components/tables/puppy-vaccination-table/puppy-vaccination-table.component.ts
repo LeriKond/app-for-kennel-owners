@@ -23,16 +23,18 @@ export class PuppyVaccinationTableComponent implements OnInit {
     @Input() vaccinations;
     ref: DynamicDialogRef | undefined;
 
-    constructor(private dialogService: DialogService, private vaccinationService: PuppyDetailsService) {}
+    constructor(private dialogService: DialogService, private puppyDetailsService: PuppyDetailsService) {}
 
     ngOnInit() {
-        this.vaccinationService.getVaccinityData().then(data => this.vaccinations = data);
+        this.puppyDetailsService.getVaccinityData().subscribe((data) => {
+            this.vaccinations = data;
+        });
     }
 
     public openDialog() {
         this.ref = this.dialogService.open(AddEditVaccinationComponent, {
             header: 'Добавление записи о вакцинации',
-            width: '50%'
+            width: '30%'
         });
 
         this.ref.onClose.subscribe((vaccination) => {

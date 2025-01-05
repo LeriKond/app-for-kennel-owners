@@ -34,7 +34,9 @@ export class LittersdemoComponent implements OnInit {
 
 
     ngOnInit() {
-        this.puppyService.getPuppiesByLitter().then(data => this.puppies = data);
+        this.puppyService.getPuppiesByLitter().subscribe((puppies) => {
+            this.puppies = puppies;
+        });
     }
 
     public showAddPuppyDialog() {

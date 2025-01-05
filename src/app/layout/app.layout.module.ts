@@ -18,6 +18,9 @@ import { AppConfigModule } from './config/config.module';
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
 import {ButtonModule} from "primeng/button";
+import {NotificationBellComponent} from "../components/notification-bell/notification-bell.component";
+import {NotificationSidebarComponent} from "../components/notification-sidebar/notification-sidebar.component";
+import {ScrollPanelModule} from "primeng/scrollpanel";
 
 @NgModule({
     declarations: [
@@ -27,6 +30,8 @@ import {ButtonModule} from "primeng/button";
         AppMenuComponent,
         AppSidebarComponent,
         AppLayoutComponent,
+        NotificationSidebarComponent,
+        NotificationBellComponent
     ],
     imports: [
         BrowserModule,
@@ -41,7 +46,8 @@ import {ButtonModule} from "primeng/button";
         RippleModule,
         RouterModule,
         AppConfigModule,
-        ButtonModule
+        ButtonModule,
+        ScrollPanelModule,
     ],
     exports: [AppLayoutComponent]
 })

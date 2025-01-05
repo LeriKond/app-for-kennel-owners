@@ -4,6 +4,13 @@
     (onClick)="showAddPuppyDialog()"
     styleClass="mb-4">
 </p-button>
+<!--<p-button-->
+<!--    severity="help"-->
+<!--    icon="pi pi-file-export"-->
+<!--    styleClass="mb-4 mr-2"-->
+<!--    pTooltip="Экспортировать данные о помете">-->
+<!--</p-button>-->
+
 <div class="grid">
     <div class="col-12 md:col-6" *ngFor="let puppy of puppies">
         <div class="card cursor-pointer mb-0 relative" (click)="showPuppyDetails(puppy)">

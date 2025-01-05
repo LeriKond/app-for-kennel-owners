@@ -31,15 +31,15 @@ const routes: Routes = [
                 data: { menuItem: 'litters' }
             },
             // Страница списка собак и деталей
-            // {
-            //     path: 'dogs',
-            //     loadChildren: () => import('./pages/dogs/dogs.module').then(m => m.DogsModule),
-            // },
+            {
+                path: 'dogs',
+                loadChildren: () => import('./pages/dogs/dogs.module').then(m => m.DogsModule),
+            },
             // Страница профиля пользователя
-            // {
-            //     path: 'profile',
-            //     loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule),
-            // },
+            {
+                path: 'profile',
+                loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule),
+            },
         ],
     },
 

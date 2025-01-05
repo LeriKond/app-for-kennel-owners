@@ -1,0 +1,5 @@
+<button class="p-link layout-topbar-button" (click)="toggleNotificationSidebar()">
+    <i class="pi pi-bell"></i>
+    <p-badge *ngIf="unreadCount > 0" [value]="unreadCount.toString()"></p-badge>
+    <span>Уведомления</span>
+</button>

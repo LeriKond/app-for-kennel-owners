@@ -48,12 +48,14 @@ export class PuppyTreatmentTableComponent implements OnInit, OnDestroy {
         private dialogService: DialogService,
         private confirmationService: ConfirmationService,
         private messageService: MessageService,
-        private treatmentService: PuppyDetailsService
+        private puppyDetailsService: PuppyDetailsService
 
 ) {}
 
     ngOnInit() {
-        this.treatmentService.getTreatmentData().then(data => this.treatments = data);
+        this.puppyDetailsService.getTreatmentData().subscribe((data) => {
+            this.treatments = data;
+        });
     }
 
     ngOnDestroy() {
@@ -68,7 +70,6 @@ export class PuppyTreatmentTableComponent implements OnInit, OnDestroy {
             width: '30%',
             contentStyle: { overflow: 'auto' },
             baseZIndex: 10000,
-            maximizable: true
         });
 
         this.ref.onClose.subscribe((treatment: Treatment) => {
@@ -88,10 +89,9 @@ export class PuppyTreatmentTableComponent implements OnInit, OnDestroy {
     public editTreatment(treatment: Treatment) {
         this.ref = this.dialogService.open(AddEditTreatmentComponent, {
             header: 'Редактирование записи',
-            width: '50%',
+            width: '30%',
             contentStyle: { overflow: 'auto' },
             baseZIndex: 10000,
-            maximizable: true,
             data: {
                 treatment: treatment
             }

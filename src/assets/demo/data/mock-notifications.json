@@ -1,0 +1,28 @@
+{
+    "notifications": [
+        {
+            "id": 1,
+            "title": "Новое сообщение",
+            "message": "Запись к ветеринару на осмотр (Бетти)",
+            "timestamp": "2024-01-05T10:30:00",
+            "isRead": false,
+            "type": "info"
+        },
+        {
+            "id": 2,
+            "title": "Напоминание!",
+            "message": "Необходимо обновить данные профиля",
+            "timestamp": "2024-01-05T09:15:00",
+            "isRead": false,
+            "type": "warning"
+        },
+        {
+            "id": 2,
+            "title": "Напоминание!",
+            "message": "Заказать корм для щенков!",
+            "timestamp": "2024-01-05T09:15:00",
+            "isRead": false,
+            "type": "warning"
+        }
+    ]
+}

@@ -26,16 +26,18 @@ export class PuppyWeightTableComponent implements OnInit {
     @Input() weights: PuppyWeight[];
     ref: DynamicDialogRef | undefined;
 
-    constructor(private dialogService: DialogService, private weightService: PuppyDetailsService) {}
+    constructor(private dialogService: DialogService, private puppyDetailsService: PuppyDetailsService) {}
 
     ngOnInit() {
-        this.weightService.getWeightData().then(data => this.weights = data);
+        this.puppyDetailsService.getWeightData().subscribe((data) => {
+            this.weights = data;
+        });
     }
 
     public openDialog() {
         this.ref = this.dialogService.open(AddEditTreatmentComponent, {
-            header: 'Добавление записи весе',
-            width: '50%'
+            header: 'Добавление записи о весе',
+            width: '30%'
         });
 
         this.ref.onClose.subscribe((weight) => {

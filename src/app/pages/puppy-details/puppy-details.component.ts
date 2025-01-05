@@ -68,33 +68,25 @@ export class PuppyDetailsComponent implements OnInit {
 
     ngOnInit() {
         // Инициализация хлебных крошек
-        this.items = [
-            {label: 'Питомник'},
-            {label: 'Щенки'},
-            {label: this.puppy?.name}
-        ];
+        // this.items = [
+        //     {label: 'Питомник'},
+        //     {label: 'Щенки'},
+        //     {label: this.puppy?.name}
+        // ];
+        //
+        // this.home = {icon: 'pi pi-home', routerLink: '/'};
 
-        this.home = {icon: 'pi pi-home', routerLink: '/'};
-
-        // Пример данных щенка (в реальном приложении данные могут приходить через сервис)
-        //     this.puppy = {
-        //         name: 'Старлит шарм Еремей',
-        //         gender: 'male',
-        //         color: 'палевый',
-        //         ribbon: 'Красная',
-        //         stamp: 'ABC123'
-        //     };
-        // }
         this.initializePuppy();
         this.initializePedigree();
     }
 
     private initializePuppy() {
         this.puppy = {
-            name: 'Старлит шарм Еремей',
+            name: 'Старлит шарм Голд',
             gender: 'male',
             color: 'Палевый',
             breed: 'Лабрадор ретривер',
+            birthDate: '20.04.2023',
             ribbon: {
                 value: 'red',
                 name: 'Красная лента'

@@ -27,7 +27,6 @@ export class LoginComponent {
     ) { }
 
     onLogin(): void {
-        console.log(11111)
         // if (this.email && this.password) {
         //     this.authService.login(this.email, this.password);
         // }

@@ -1,0 +1,24 @@
+.notification-item {
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+    cursor: pointer;
+    display: flex;
+    align-items: start;
+    gap: 1rem;
+}
+.notification-item:hover {
+    background-color: #f8f9fa;
+}
+.unread {
+    background-color: #e9ecef;
+}
+.notification-content {
+    flex: 1;
+}
+h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+small {
+    color: #6c757d;
+}

@@ -1,5 +1,5 @@
 import { Injectable, effect, signal } from '@angular/core';
-import { Subject } from 'rxjs';
+import {BehaviorSubject, Subject} from 'rxjs';
 
 export interface AppConfig {
     inputStyle: string;
@@ -17,6 +17,7 @@ interface LayoutState {
     configSidebarVisible: boolean;
     staticMenuMobileActive: boolean;
     menuHoverActive: boolean;
+    notificationSidebarVisible: boolean;
 }
 
 @Injectable({
@@ -41,6 +42,7 @@ export class LayoutService {
         configSidebarVisible: false,
         staticMenuMobileActive: false,
         menuHoverActive: false,
+        notificationSidebarVisible: false
     };
 
     private configUpdate = new Subject<AppConfig>();
@@ -155,5 +157,13 @@ export class LayoutService {
 
     changeScale(value: number) {
         document.documentElement.style.fontSize = `${value}px`;
+    }
+
+    showNotificationSidebar() {
+        // Изменим на переключение состояния
+        this.state.notificationSidebarVisible = !this.state.notificationSidebarVisible;
+        if (this.state.notificationSidebarVisible) {
+            this.overlayOpen.next(null);
+        }
     }
 }

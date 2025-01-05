@@ -38,12 +38,11 @@ export class AppMenuComponent implements OnInit {
 
     showAddLitterDialog() {
         const ref = this.dialogService.open(AddLitterComponent, {
-            header: 'Добавить новый помет',
+            header: 'Новый помет',
             width: '70%',
             contentStyle: { overflow: 'auto' },
             baseZIndex: 10000,
-            maximizable: true,
-            closable: false  // Предотвращаем закрытие по клику вне модального окна
+            closable: true  // Предотвращаем закрытие по клику вне модального окна
         });
 
         ref.onClose.subscribe((litter) => {

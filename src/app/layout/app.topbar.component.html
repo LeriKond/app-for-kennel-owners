@@ -1,6 +1,6 @@
 <div class="layout-topbar">
     <a class="layout-topbar-logo" routerLink="">
-        <img src="assets/layout/images/logo.png" alt="logo">
+        <img src="assets/icons/heart-like.svg" alt="logo">
         <span>Breeder's Best</span>
     </a>
 
@@ -17,13 +17,14 @@
             <i class="pi pi-calendar"></i>
             <span>Календарь</span>
         </button>
-        <button class="p-link layout-topbar-button">
+        <button class="p-link layout-topbar-button" [routerLink]="'/profile'">
             <i class="pi pi-user"></i>
             <span>Профиль</span>
         </button>
-        <button class="p-link layout-topbar-button" [routerLink]="'/documentation'">
-            <i class="pi pi-bell"></i>
-            <span>Уведомления</span>
-        </button>
+<!--        <button class="p-link layout-topbar-button" [routerLink]="'/documentation'">-->
+<!--            <i class="pi pi-bell"></i>-->
+<!--            <span>Уведомления</span>-->
+<!--        </button>-->
+        <app-notification-bell></app-notification-bell>
     </div>
 </div>

@@ -35,7 +35,8 @@ export class AddLitterComponent {
         });
     }
 
-    close() {
+    close(event: Event) {
+        event.preventDefault();
         this.ref.close();
     }
 

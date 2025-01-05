@@ -1,0 +1,51 @@
+<div class="card">
+    <h2>Профиль пользователя</h2>
+
+    <div class="p-fluid formgrid grid">
+        <!-- Email -->
+        <div class="field col-12 md:col-6">
+            <label>Email</label>
+            <p-inputText id="email" [(ngModel)]="userProfile.email" disabled></p-inputText>
+        </div>
+
+        <!-- Название питомника -->
+        <div class="field col-12 md:col-6">
+            <label>Название питомника</label>
+            <p-inputText id="breederName" [(ngModel)]="userProfile.breederName" disabled></p-inputText>
+        </div>
+
+        <!-- Номер телефона -->
+        <div class="field col-12 md:col-6">
+            <label>Номер телефона</label>
+            <p-inputText id="phoneNumber" [(ngModel)]="userProfile.phoneNumber" disabled></p-inputText>
+        </div>
+
+        <!-- Пароль -->
+        <div class="field col-12 md:col-6">
+            <label for="password">Пароль</label>
+            <p-password id="password" [(ngModel)]="userProfile.password" toggleMask disabled></p-password>
+        </div>
+
+        <!-- Имя владельца -->
+        <div class="field col-12 md:col-6">
+            <label>Владелец питомника</label>
+            <p-inputText id="firstName" [(ngModel)]="userProfile.firstName" disabled></p-inputText>
+        </div>
+
+        <!-- Фамилия владельца -->
+        <div class="field col-12 md:col-6">
+            <label>Фамилия владельца</label>
+            <p-inputText id="lastName" [(ngModel)]="userProfile.lastName" disabled></p-inputText>
+        </div>
+
+        <!-- Номер питомника -->
+        <div class="field col-12">
+            <label>Номер питомника</label>
+            <p-inputText id="breederNumber" [(ngModel)]="userProfile.breederNumber" disabled></p-inputText>
+        </div>
+    </div>
+
+    <div class="p-mt-4">
+        <button pButton type="button" label="Редактировать профиль" class="p-button-primary" (click)="editProfile()"></button>
+    </div>
+</div>

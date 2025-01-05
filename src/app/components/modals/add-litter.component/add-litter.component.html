@@ -1,7 +1,7 @@
 <form [formGroup]="litterForm" (ngSubmit)="onSubmit($event)" class="grid p-fluid">
     <div class="col-12 md:col-6">
         <div class="field">
-            <label for="litterCode">Код помета</label>
+            <label for="litterCode">Код/буква помета</label>
             <input id="litterCode" type="text" pInputText formControlName="litterCode">
         </div>
     </div>
@@ -14,18 +14,18 @@
     <div class="col-12 md:col-6">
         <div class="field">
             <label for="father">Отец</label>
-            <input id="father" formControlName="father" type="text">
+            <input id="father" formControlName="father" pInputText type="text">
         </div>
     </div>
     <div class="col-12 md:col-6">
         <div class="field">
             <label for="mother">Мать</label>
-            <input id="mother" formControlName="mother" type="text">
+            <input id="mother" formControlName="mother" pInputText type="text">
         </div>
     </div>
     <div class="col-12">
         <div class="flex justify-content-end">
-            <button pButton label="Отмена" icon="pi pi-times" class="p-button-text mr-2" (click)="close()"></button>
+            <p-button type="button" label="Отмена" icon="pi pi-times" class="p-button-text mr-2" (click)="close($event)"></p-button>
             <p-button type="button" label="Сохранить" icon="pi pi-check" (click)="save($event)"></p-button>
         </div>
     </div>
