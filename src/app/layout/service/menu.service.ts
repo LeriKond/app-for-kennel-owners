@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
-export class MenuService {
+export class mainMenuService {
     private readonly MENU_KEY = 'app_menu';
     private menuItems = new BehaviorSubject<any[]>([]);
     menuItems$ = this.menuItems.asObservable();
@@ -49,5 +49,55 @@ export class MenuService {
 
             this.updateMenu(updatedMenu);
         }
+    }
+
+    editLitter(litterId: number, updatedData: any) {
+        const currentMenu = this.menuItems.getValue();
+        const litterIndex = currentMenu.findIndex(item => item.label === 'Пометы');
+
+        if (litterIndex !== -1) {
+            const updatedMenu = [...currentMenu];
+            const litterItems = updatedMenu[litterIndex].items.map(item =>
+                item.id === litterId ? {
+                    ...item,
+                    label: `Помет "${updatedData.letter}"`,
+                    alias: updatedData.letter,
+                    ...updatedData
+                } : item
+            );
+
+            updatedMenu[litterIndex] = {
+                ...updatedMenu[litterIndex],
+                items: litterItems
+            };
+
+            this.updateMenu(updatedMenu);
+        }
+    }
+
+    deleteLitter(litterId: number) {
+        const currentMenu = this.menuItems.getValue();
+        const litterIndex = currentMenu.findIndex(item => item.label === 'Пометы');
+
+        if (litterIndex !== -1) {
+            const updatedMenu = [...currentMenu];
+            const litterItems = updatedMenu[litterIndex].items.filter(item => item.id !== litterId);
+
+            updatedMenu[litterIndex] = {
+                ...updatedMenu[litterIndex],
+                items: litterItems
+            };
+
+            this.updateMenu(updatedMenu);
+        }
+    }
+
+
+    private updateLitterItems(items: any[]) {
+        const currentMenu = this.menuItems.getValue();
+        const updatedMenu = currentMenu.map(item =>
+            item.label === 'Пометы' ? { ...item, items } : item
+        );
+        this.updateMenu(updatedMenu);
     }
 }

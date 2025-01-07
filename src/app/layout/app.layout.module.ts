@@ -21,6 +21,8 @@ import {ButtonModule} from "primeng/button";
 import {NotificationBellComponent} from "../components/notification-bell/notification-bell.component";
 import {NotificationSidebarComponent} from "../components/notification-sidebar/notification-sidebar.component";
 import {ScrollPanelModule} from "primeng/scrollpanel";
+import {ContextMenuModule} from "primeng/contextmenu";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
     declarations: [
@@ -34,6 +36,7 @@ import {ScrollPanelModule} from "primeng/scrollpanel";
         NotificationBellComponent
     ],
     imports: [
+        CommonModule,
         BrowserModule,
         FormsModule,
         HttpClientModule,
@@ -48,6 +51,7 @@ import {ScrollPanelModule} from "primeng/scrollpanel";
         AppConfigModule,
         ButtonModule,
         ScrollPanelModule,
+        ContextMenuModule
     ],
     exports: [AppLayoutComponent]
 })

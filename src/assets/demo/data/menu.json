@@ -19,12 +19,14 @@
         "showAddButton": true,
         "items": [
             {
+                "id": 23,
                 "label": "Помет \"Г\"",
                 "icon": "pi pi-fw pi-id-card",
                 "routerLink": ["/litters"],
                 "alias": "Г"
             },
             {
+                "id": 21,
                 "label": "Помет \"Ф\"",
                 "icon": "pi pi-fw pi-id-card",
                 "routerLink": ["/litters"],

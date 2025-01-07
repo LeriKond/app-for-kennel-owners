@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
 import { DialogService } from "primeng/dynamicdialog";
 import { AddLitterComponent } from "../components/modals/add-litter.component/add-litter.component";
-import { MenuService } from './service/menu.service';
+import { mainMenuService } from './service/menu.service';
 
 @Component({
     selector: 'app-menu',
@@ -14,7 +14,7 @@ export class AppMenuComponent implements OnInit {
     constructor(
         public layoutService: LayoutService,
         private dialogService: DialogService,
-        private menuService: MenuService
+        private menuService: mainMenuService
     ) { }
 
     ngOnInit() {

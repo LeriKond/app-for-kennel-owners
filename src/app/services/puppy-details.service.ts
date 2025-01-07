@@ -9,6 +9,14 @@ import { map } from 'rxjs/operators';
 export class PuppyDetailsService {
     constructor(private http: HttpClient) {}
 
+    getPuppyDataById(id: number): Observable<any> {
+        //TODO убрать фильтрацию при появлении бэка и добавить id в запрос
+        return this.http.get<any>('assets/demo/data/puppy.json').pipe(
+            map((res) => res.data.find((puppy: any) => puppy.id === id)) // Ищем щенка с нужным ID
+        );
+    }
+
+
     getHeightData(id?: number): Observable<any> {
         return this.http.get<any>('assets/demo/data/height.json').pipe(
             map((res) => res.data) // Преобразуем результат

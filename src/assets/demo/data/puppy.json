@@ -3,14 +3,18 @@
       {
           "id": 1227,
           "name": "Старлит Шарм Гай Юлий Цезарь",
+          "photo": "assets/demo/images/labrador-puppy.jpg",
           "gender": "male",
+          "birthDate": "2024-08-20",
+          "color": "Палевый",
           "ribbon": {
               "value": "green",
               "name": "Зеленая лента"
           },
-          "stamp": "КЧФХ-345678",
-          "color": "Серый",
-          "status": "Продан"
+          "chip": "M-36581345678",
+          "status": "Продан",
+          "stamp": "ABC123",
+          "breed": "Лабрадор ретривер"
       }
   ]
 }

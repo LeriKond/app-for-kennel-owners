@@ -1,6 +1,4 @@
 <div class="card w-full">
-<!--    <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>-->
-
     <div class="mt-4 w-full">
         <div class="flex flex-column align-items-center w-full">
             <h2 class="text-2xl font-bold mb-3">{{puppy.name}}</h2>
@@ -15,6 +13,11 @@
                 <div class="grid p-3">
                     <div class="col-12 md:col-6">
                         <div class="grid mb-2">
+                            <div class="col-12 flex justify-content-center">
+                                <p-image [src]="puppy.photo || 'assets/default-puppy.jpg'" [alt]="puppy.name"></p-image>
+                            </div>
+                        </div>
+                        <div class="grid mb-2">
                             <div class="col-5 font-bold">Кличка:</div>
                             <div class="col-7">{{puppy.name}}</div>
                         </div>
@@ -22,6 +25,11 @@
                         <div class="grid mb-2">
                             <div class="col-5 font-bold">Дата рождения:</div>
                             <div class="col-7">{{puppy.birthDate | date:'dd.MM.yyyy'}}</div>
+                        </div>
+
+                        <div class="grid mb-2">
+                            <div class="col-5 font-bold">Возраст:</div>
+                            <div class="col-7">{{puppy.birthDate | puppyAge}}</div>
                         </div>
 
                         <div class="grid mb-2">
@@ -59,9 +67,20 @@
                         </div>
 
                         <div class="grid mb-2">
+                            <div class="col-5 font-bold">Номер чипа:</div>
+                            <div class="col-7">{{puppy.chip || 'Нет'}}</div>
+                        </div>
+
+                        <div class="grid mb-2">
+                            <div class="col-5 font-bold">Статус:</div>
+                            <div class="col-7">{{puppy.status}}</div>
+                        </div>
+
+                        <div class="grid mb-2">
                             <div class="col-5 font-bold">Особые отметки:</div>
                             <div class="col-7">{{puppy.specialMarks || 'Нет'}}</div>
                         </div>
+
                     </div>
                 </div>
             </p-card>
@@ -76,7 +95,7 @@
                 </p-fieldset>
 
                 <p-fieldset legend="Данные о вакцинациях" [toggleable]="true" styleClass="w-full">
-                    <app-puppy-vaccination-table [vaccinations]=""></app-puppy-vaccination-table>
+                    <app-puppy-vaccination-table></app-puppy-vaccination-table>
                 </p-fieldset>
 
                 <p-fieldset legend="Данные об обработках" [toggleable]="true" styleClass="w-full">

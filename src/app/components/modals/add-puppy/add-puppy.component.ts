@@ -14,6 +14,7 @@ export interface Ribbon {
 
 export interface Puppy {
     name: string;
+    photo?: string;
     color: string;
     gender: 'male' | 'female';
     ribbon: Ribbon;
@@ -26,9 +27,10 @@ export interface Puppy {
     specialMarks?: string;
     breed?: string;
     birthDate?: string;
+    chip?: string;
 }
 
-export type PuppyStatus = 'Продан' | 'Продается' | 'В питомнике';
+export type PuppyStatus = 'Продан' | 'Продается' | 'В питомнике' | 'Резерв';
 @Component({
   selector: 'app-add-litter',
   standalone: true,

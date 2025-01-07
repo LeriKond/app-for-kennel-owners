@@ -1,42 +1,44 @@
-<form [formGroup]="vaccinationForm" class="grid p-fluid">
-    <div class="col-12">
+<div class="grid p-fluid">
+    <div class="col-6">
         <div class="field">
-            <label for="name">Наименование</label>
-            <input id="name" type="text" pInputText formControlName="name">
+            <label for="name">Наименование вакцины</label>
+            <input id="name" type="text" pInputText [(ngModel)]="vaccination.name">
         </div>
     </div>
 
-    <div class="col-12 md:col-6">
+    <div class="col-6 md:col-6">
         <div class="field">
             <label for="date">Дата вакцинации</label>
             <p-calendar
                 id="date"
-                formControlName="date"
                 [showIcon]="true"
-                appendTo="body">
+                appendTo="body"
+                [(ngModel)]="vaccination.date">
             </p-calendar>
         </div>
     </div>
 
-    <div class="col-12 md:col-6">
+    <div class="col-6 md:col-6">
         <div class="field">
-            <label for="clinic">Наименование ветеринарной клинки</label>
+            <label for="clinic">Название ветеринарной клинки</label>
             <input
                 id="clinic"
                 type="text"
                 pInputText
-                formControlName="clinic">
+                [(ngModel)]="vaccination.clinic"
+            >
         </div>
     </div>
 
-    <div class="col-12 md:col-6">
+    <div class="col-6 md:col-6">
         <div class="field">
-            <label for="vet">Ветеринарный врач</label>
+            <label for="vet">Ветеринарный врач (ФИО)</label>
             <input
                 id="vet"
                 type="text"
                 pInputText
-                formControlName="vet">
+                [(ngModel)]="vaccination.vet"
+            >
         </div>
     </div>
 
@@ -53,10 +55,9 @@
                 pButton
                 label="Сохранить"
                 icon="pi pi-check"
-                (click)="save()"
-                [disabled]="!vaccinationForm.valid">
+                (click)="save()">
             </button>
         </div>
     </div>
-</form>
+</div>
 

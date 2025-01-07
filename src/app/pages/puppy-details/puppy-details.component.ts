@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BreadcrumbModule} from "primeng/breadcrumb";
-import {MenuItem, TreeNode} from "primeng/api";
+import {ConfirmationService, MenuItem, MessageService, TreeNode} from "primeng/api";
 import {Puppy} from "../../components/modals/add-puppy/add-puppy.component";
 import {CardModule} from "primeng/card";
 import {OrganizationChartModule} from "primeng/organizationchart";
@@ -10,6 +10,10 @@ import {PuppyWeightTableComponent} from "../../components/tables/puppy-weight-ta
 import {PuppyVaccinationTableComponent} from "../../components/tables/puppy-vaccination-table/puppy-vaccination-table.component";
 import {PuppyTreatmentTableComponent} from "../../components/tables/puppy-treatment-table/puppy-treatment-table.component";
 import {DatePipe} from "@angular/common";
+import {ImageModule} from "primeng/image";
+import {PuppyDetailsService} from "../../services/puppy-details.service";
+import {PuppyAgePipe} from "./puppy-age.pipe";
+
 interface DogAchievements {
     tests?: string[];
     shows?: string[];
@@ -35,7 +39,9 @@ export interface PedigreeNode {
         PuppyWeightTableComponent,
         PuppyVaccinationTableComponent,
         PuppyTreatmentTableComponent,
-        DatePipe
+        DatePipe,
+        ImageModule,
+        PuppyAgePipe
     ],
   templateUrl: './puppy-details.component.html',
   styleUrl: './puppy-details.component.scss'
@@ -66,81 +72,49 @@ export class PuppyDetailsComponent implements OnInit {
         ]
     };
 
+    constructor(
+        private puppyDetailsService: PuppyDetailsService
+
+    ) {}
+
     ngOnInit() {
-        // Инициализация хлебных крошек
-        // this.items = [
-        //     {label: 'Питомник'},
-        //     {label: 'Щенки'},
-        //     {label: this.puppy?.name}
-        // ];
-        //
-        // this.home = {icon: 'pi pi-home', routerLink: '/'};
-
-        this.initializePuppy();
-        this.initializePedigree();
+        const puppyId = 1227; // Пример ID для теста
+        this.puppyDetailsService.getPuppyDataById(puppyId).subscribe((puppyData) => {
+            this.puppy = puppyData;
+            // this.initializePedigree();
+        });
+        // this.initializePedigree();
     }
 
-    private initializePuppy() {
-        this.puppy = {
-            name: 'Старлит шарм Голд',
-            gender: 'male',
-            color: 'Палевый',
-            breed: 'Лабрадор ретривер',
-            birthDate: '20.04.2023',
-            ribbon: {
-                value: 'red',
-                name: 'Красная лента'
-            },
-            stamp: 'ABC123',
-            pedigree: {
-                father: {
-                    name: 'ЖЕРМИНАЛЬ МИСТИ ШОУ МЭЙКЕР',
-                    achievements: {
-                        tests: ['HD-A', 'ED-0', 'BH/VT'],
-                        shows: ['CH RUS', 'JCH RUS', 'Best in Show 2022']
-                    }
-                },
-                mother: {
-                    name: 'АХТИАР АК ЯР КАРОЛИНА',
-                    achievements: {
-                        tests: ['HD-B', 'ED-0', 'IGP-1'],
-                        shows: ['CH RUS', 'CH RKF', 'CACIB 2023']
-                    }
-                }
-            }
-        };
-    }
-
-
-    private initializePedigree() {
-        this.pedigreeData = [
-            {
-                expanded: true,
-                type: 'puppy',
-                styleClass: 'puppy-node',
-                label: this.puppy.name,
-                data: { achievements: null },
-                children: [
-                    {
-                        expanded: true,
-                        type: 'father',
-                        styleClass: 'father-node',
-                        label: this.puppy.pedigree.father.name,
-                        data: {
-                            achievements: this.puppy.pedigree.father.achievements
-                        }
-                    },
-                    {
-                        expanded: true,
-                        type: 'mother',
-                        styleClass: 'mother-node',
-                        label: this.puppy.pedigree.mother.name,
-                        data: {
-                            achievements: this.puppy.pedigree.mother.achievements
-                        }
-                    }
-                ]
-            }
-        ];
-    }
+    // private initializePedigree() {
+    //     this.pedigreeData = [
+    //         {
+    //             expanded: true,
+    //             type: 'puppy',
+    //             styleClass: 'puppy-node',
+    //             label: this.puppy.name,
+    //             data: { achievements: null },
+    //             children: [
+    //                 {
+    //                     expanded: true,
+    //                     type: 'father',
+    //                     styleClass: 'father-node',
+    //                     label: this.puppy.pedigree.father.name,
+    //                     data: {
+    //                         achievements: this.puppy.pedigree.father.achievements
+    //                     }
+    //                 },
+    //                 {
+    //                     expanded: true,
+    //                     type: 'mother',
+    //                     styleClass: 'mother-node',
+    //                     label: this.puppy.pedigree.mother.name,
+    //                     data: {
+    //                         achievements: this.puppy.pedigree.mother.achievements
+    //                     }
+    //                 }
+    //             ]
+    //         }
+    //     ];
+    // }
 }

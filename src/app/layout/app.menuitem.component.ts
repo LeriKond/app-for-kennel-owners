@@ -1,51 +1,67 @@
-import { ChangeDetectorRef, Component, Host, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, Host, HostBinding, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { MenuService } from './app.menu.service';
 import { LayoutService } from './service/app.layout.service';
+import { MenuItem } from 'primeng/api';
+import { mainMenuService } from './service/menu.service';
+import { ContextMenu } from 'primeng/contextmenu';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
     selector: '[app-menuitem]',
     template: `
         <ng-container>
             <div *ngIf="root && item.visible !== false" class="layout-menuitem-root-text">
-        {{item.label}}
-        <button *ngIf="item.showAddButton"
-                pButton
-                icon="pi pi-plus"
-                class="p-button-rounded p-button-text p-button-sm ml-2"
-                (click)="onAddButtonClick($event)">
-        </button>
-    </div>
-            <a *ngIf="(!item.routerLink || item.items) && item.visible !== false" [attr.href]="item.url"
-       (click)="itemClick($event)"
-       [ngClass]="item.class" [attr.target]="item.target" tabindex="0" pRipple>
-        <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
-        <span class="layout-menuitem-text">{{item.label}}</span>
-        <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
-    </a>
-            <a *ngIf="(item.routerLink && !item.items) && item.visible !== false" (click)="itemClick($event)"
-       [ngClass]="item.class"
-       [routerLink]="item.routerLink" routerLinkActive="active-route"
-       [routerLinkActiveOptions]="item.routerLinkActiveOptions||{ paths: 'exact', queryParams: 'ignored', matrixParams: 'ignored', fragment: 'ignored' }"
-       [fragment]="item.fragment" [queryParamsHandling]="item.queryParamsHandling"
-       [preserveFragment]="item.preserveFragment"
-       [skipLocationChange]="item.skipLocationChange" [replaceUrl]="item.replaceUrl" [state]="item.state"
-       [queryParams]="item.queryParams"
-       [attr.target]="item.target" tabindex="0" pRipple>
-        <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
-        <span class="layout-menuitem-text">{{item.label}}</span>
-        <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
-    </a>
+                {{item.label}}
+                <button *ngIf="item.showAddButton"
+                        pButton
+                        icon="pi pi-plus"
+                        class="p-button-rounded p-button-text p-button-sm ml-2"
+                        (click)="onAddButtonClick($event)">
+                </button>
+            </div>
+            <a *ngIf="(!item.routerLink || item.items) && item.visible !== false"
+               [attr.href]="item.url"
+               (click)="itemClick($event)"
+               [ngClass]="item.class"
+               [attr.target]="item.target"
+               tabindex="0"
+               pRipple>
+                <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
+                <span class="layout-menuitem-text">{{item.label}}</span>
+                <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
+            </a>
+            <a *ngIf="(item.routerLink && !item.items) && item.visible !== false"
+               (click)="itemClick($event)"
+               (contextmenu)="onContextMenu($event)"
+               [ngClass]="item.class"
+               [routerLink]="item.routerLink"
+               routerLinkActive="active-route"
+               [routerLinkActiveOptions]="item.routerLinkActiveOptions||{ paths: 'exact', queryParams: 'ignored', matrixParams: 'ignored', fragment: 'ignored' }"
+               [fragment]="item.fragment"
+               [queryParamsHandling]="item.queryParamsHandling"
+               [preserveFragment]="item.preserveFragment"
+               [skipLocationChange]="item.skipLocationChange"
+               [replaceUrl]="item.replaceUrl"
+               [state]="item.state"
+               [queryParams]="item.queryParams"
+               [attr.target]="item.target"
+               tabindex="0"
+               pRipple>
+                <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
+                <span class="layout-menuitem-text">{{item.label}}</span>
+                <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
+            </a>
 
             <ul *ngIf="item.items && item.visible !== false" [@children]="submenuAnimation">
-        <ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
-            <li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
-        </ng-template>
-    </ul>
+                <ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
+                    <li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
+                </ng-template>
+            </ul>
+
+            <p-contextMenu #cm [model]="contextMenuItems"></p-contextMenu>
         </ng-container>
     `,
     animations: [
@@ -62,6 +78,7 @@ import { LayoutService } from './service/app.layout.service';
     styleUrls: ['./app.menuitem.component.scss']
 })
 export class AppMenuitemComponent implements OnInit, OnDestroy {
+    @ViewChild('cm') cm!: ContextMenu;
 
     @Input() item: any;
 
@@ -79,13 +96,20 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
 
     key: string = "";
 
-    constructor(public layoutService: LayoutService, private cd: ChangeDetectorRef, public router: Router, private menuService: MenuService) {
+    contextMenuItems: MenuItem[] = [];
+
+    constructor(
+        public layoutService: LayoutService,
+        private cd: ChangeDetectorRef,
+        public router: Router,
+        private menuService: MenuService,
+        private menuItemService: mainMenuService
+    ) {
         this.menuSourceSubscription = this.menuService.menuSource$.subscribe(value => {
             Promise.resolve(null).then(() => {
                 if (value.routeEvent) {
-                    this.active = (value.key === this.key || value.key.startsWith(this.key + '-')) ? true : false;
-                }
-                else {
+                    this.active = (value.key === this.key || value.key.startsWith(this.key + '-'));
+                } else {
                     if (value.key !== this.key && !value.key.startsWith(this.key + '-')) {
                         this.active = false;
                     }
@@ -98,7 +122,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
         });
 
         this.router.events.pipe(filter(event => event instanceof NavigationEnd))
-            .subscribe(params => {
+            .subscribe(() => {
                 if (this.item.routerLink) {
                     this.updateActiveStateFromRoute();
                 }
@@ -108,13 +132,22 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.key = this.parentKey ? this.parentKey + '-' + this.index : String(this.index);
 
+        if (this.isLitterItem()) {
+            this.initializeContextMenu();
+        }
+
         if (this.item.routerLink) {
             this.updateActiveStateFromRoute();
         }
     }
 
     updateActiveStateFromRoute() {
-        let activeRoute = this.router.isActive(this.item.routerLink[0], { paths: 'exact', queryParams: 'ignored', matrixParams: 'ignored', fragment: 'ignored' });
+        const activeRoute = this.router.isActive(this.item.routerLink[0], {
+            paths: 'exact',
+            queryParams: 'ignored',
+            matrixParams: 'ignored',
+            fragment: 'ignored'
+        });
 
         if (activeRoute) {
             this.menuService.onMenuStateChange({ key: this.key, routeEvent: true });
@@ -122,18 +155,15 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
     }
 
     itemClick(event: Event) {
-        // avoid processing disabled items
         if (this.item.disabled) {
             event.preventDefault();
             return;
         }
 
-        // execute command
         if (this.item.command) {
             this.item.command({ originalEvent: event, item: this.item });
         }
 
-        // toggle active state
         if (this.item.items) {
             this.active = !this.active;
         }
@@ -146,6 +176,57 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
         event.stopPropagation();
         if (this.item.addButtonAction) {
             this.item.addButtonAction();
+        }
+    }
+
+    isLitterItem(): boolean {
+        return this.item.label && this.item.label.startsWith('Помет');
+    }
+
+    onContextMenu(event: MouseEvent) {
+        if (this.isLitterItem()) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            if (this.cm) {
+                this.cm.show(event);
+            }
+        }
+    }
+
+    initializeContextMenu() {
+        this.contextMenuItems = [
+            {
+                label: 'Редактировать',
+                icon: 'pi pi-pencil',
+                command: () => this.editLitter()
+            },
+            {
+                label: 'Удалить',
+                icon: 'pi pi-trash',
+                command: () => this.deleteLitter()
+            }
+        ];
+    }
+
+    editLitter() {
+        if (this.item.id) {
+            // Here you would typically open a dialog or navigate to edit form
+            console.log('Editing litter:', this.item.id);
+            // Example of editing a litter
+            const updatedData = {
+                letter: this.item.alias,
+                // other updated fields
+            };
+            this.menuItemService.editLitter(this.item.id, updatedData);
+        }
+    }
+
+    deleteLitter() {
+        if (this.item.id) {
+            // Here you might want to add a confirmation dialog
+            console.log('Deleting litter:', this.item.id);
+            this.menuItemService.deleteLitter(this.item.id);
         }
     }
 
