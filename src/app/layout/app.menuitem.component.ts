@@ -61,7 +61,7 @@ import { ContextMenu } from 'primeng/contextmenu';
                 </ng-template>
             </ul>
 
-            <p-contextMenu #cm [model]="contextMenuItems"></p-contextMenu>
+            <p-contextMenu #cm [model]="contextMenuItems" [appendTo]="'body'"></p-contextMenu>
         </ng-container>
     `,
     animations: [
