@@ -4,7 +4,7 @@
 This is my graduation project. It is a web application for dog kennel owners. To keep records of kennel dogs and puppies (for example, treatments, puppies born, etc.)
 
 
-The project is based on the Sakai template from the PrimeNG library.
+The project is based on the Sakai template from the PrimeNG library and PrimeNG components are also used.
 
 ## Development server
 
