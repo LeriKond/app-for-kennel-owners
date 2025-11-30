@@ -1,6 +1,10 @@
-# Sakai
+#  A Web Application for Dog Kennel Owners
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.4.
+А web application designed to help dog kennel owners efficiently manage information about their dogs and litters.
+This is my graduation project. It is a web application for dog kennel owners. To keep records of kennel dogs and puppies (for example, treatments, puppies born, etc.)
+
+
+The project is based on the Sakai template from the PrimeNG library.
 
 ## Development server
 
